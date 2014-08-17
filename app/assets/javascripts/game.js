@@ -15,8 +15,10 @@ var key1, key2, key3, key4;
 var keys = [];
 
 // characters
+// var everyone = {};
 var person, ghost1, ghost2, ghost3, ghost4;
-var characters = [], ghosts = [];
+// var characters = [], 
+var ghosts = [];
 
 // misc
 var dots = [];
@@ -28,19 +30,19 @@ function create() {
   game.physics.startSystem(Phaser.Physics.ARCADE);
 
   createBoard();
-  createPerson();
+  everyone.createPerson();
   createGhosts();
   createHotkeys();
   createTeleport();
   createDots(30);
 
   //  Enable physics for sprites, make world boundaries.
-  var gamePhysicsArray = [characters, dots, starOne, starTwo];
+  var gamePhysicsArray = [characters.all, dots, starOne, starTwo];
   for (var i = 0; i < gamePhysicsArray.length; i++) {
     game.physics.arcade.enable(gamePhysicsArray[i]);
   }
 
-  characters.forEach( function( character ) { character.body.collideWorldBounds = true; })
+  characters.all.forEach( function( character ) { character.body.collideWorldBounds = true; })
 
   //might want to refactor this and use cursor keys
   for (var i = 0; i < keys.length; i++) {
