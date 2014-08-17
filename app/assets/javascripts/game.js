@@ -10,9 +10,18 @@ function preload() {
   loadImages();
 };
 
-var characters = [], dots = [], ghosts = [];
-var person, ghost1, ghost2, ghost3, ghost4, platforms, scoreText, livesText, key1, key2, key3, key4, starOne, starTwo, group;
-var score = 0, maxScore = 20, lives = 3;
+// keys
+var key1, key2, key3, key4;
+var keys = [key1, key2, key3, key4]
+
+// characters
+var person, ghost1, ghost2, ghost3, ghost4;
+var characters = [], ghosts = [];
+
+// misc
+var dots = [];
+var platforms, scoreText, livesText, starOne, starTwo, group;
+var score = 0, maxScore = 20, lives = 4;
 
 function create() {
 
@@ -121,7 +130,7 @@ function eatGhosts (person, ghosts) {
 
 function gameOver (winner) {
   if (lives === 0) {
-    aler
+    alert("you poop");
   }
 }
 
