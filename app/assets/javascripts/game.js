@@ -12,7 +12,7 @@ function preload() {
 
 // keys
 var key1, key2, key3, key4;
-var keys = [key1, key2, key3, key4]
+var keys = [];
 
 // characters
 var person, ghost1, ghost2, ghost3, ghost4;
@@ -32,7 +32,7 @@ function create() {
   createGhosts();
   createHotkeys();
   createTeleport();
-  createDots(10);
+  createDots(30);
 
   //  Enable physics for sprites, make world boundaries.
   var gamePhysicsArray = [characters, dots, starOne, starTwo];
@@ -43,10 +43,9 @@ function create() {
   characters.forEach( function( character ) { character.body.collideWorldBounds = true; })
 
   //might want to refactor this and use cursor keys
-  key1.onDown.add( function() { setUserControl(ghosts, 1) } );
-  key2.onDown.add( function() { setUserControl(ghosts, 2) } );
-  key3.onDown.add( function() { setUserControl(ghosts, 3) } );
-  key4.onDown.add( function() { setUserControl(ghosts, 4) } );
+  for (var i = 0; i < keys.length; i++) {
+    keys[i].onDown.add( function() { setUserControl(ghosts, i + 1)})
+  }
 
   scoreText = game.add.text(32, 550, 'score: 0', { font: "20px Arial", fill: "#ffffff", align: "left" });
   livesText = game.add.text(680, 550, 'lives: 3', { font: "20px Arial", fill: "#ffffff", align: "left" });
