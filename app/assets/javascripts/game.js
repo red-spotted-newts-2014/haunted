@@ -10,34 +10,44 @@ function preload() {
   loadImages();
 };
 
-var characters = [], dots = [], ghosts = [];
-var person, ghost1, ghost2, ghost3, ghost4, platforms, scoreText, livesText, key1, key2, key3, key4, starOne, starTwo, group;
-var score = 0, maxScore = 20, lives = 3;
+// keys
+var key1, key2, key3, key4;
+var keys = [];
+
+// characters
+// var everyone = {};
+var person, ghost1, ghost2, ghost3, ghost4;
+// var characters = [], 
+var ghosts = [];
+
+// misc
+var dots = [];
+var platforms, scoreText, livesText, starOne, starTwo, group;
+var score = 0, maxScore = 20, lives = 4;
 
 function create() {
 
   game.physics.startSystem(Phaser.Physics.ARCADE);
 
   createBoard();
-  createPerson();
+  everyone.createPerson();
   createGhosts();
   createHotkeys();
   createTeleport();
-  createDots(10);
+  createDots(30);
 
   //  Enable physics for sprites, make world boundaries.
-  var gamePhysicsArray = [characters, dots, starOne, starTwo];
+  var gamePhysicsArray = [characters.all, dots, starOne, starTwo];
   for (var i = 0; i < gamePhysicsArray.length; i++) {
     game.physics.arcade.enable(gamePhysicsArray[i]);
   }
 
-  characters.forEach( function( character ) { character.body.collideWorldBounds = true; })
+  characters.all.forEach( function( character ) { character.body.collideWorldBounds = true; })
 
   //might want to refactor this and use cursor keys
-  key1.onDown.add( function() { setUserControl(ghosts, 1) } );
-  key2.onDown.add( function() { setUserControl(ghosts, 2) } );
-  key3.onDown.add( function() { setUserControl(ghosts, 3) } );
-  key4.onDown.add( function() { setUserControl(ghosts, 4) } );
+  for (var i = 0; i < keys.length; i++) {
+    keys[i].onDown.add( function() { setUserControl(ghosts, i + 1)})
+  }
 
   scoreText = game.add.text(32, 550, 'score: 0', { font: "20px Arial", fill: "#ffffff", align: "left" });
   livesText = game.add.text(680, 550, 'lives: 3', { font: "20px Arial", fill: "#ffffff", align: "left" });
@@ -121,7 +131,7 @@ function eatGhosts (person, ghosts) {
 
 function gameOver (winner) {
   if (lives === 0) {
-    aler
+    alert("you poop");
   }
 }
 
