@@ -79,13 +79,15 @@ $(document).ready(function() {
         }
       });
     } else {
-      modals.confirmP1(roomSession);    
+      modals.confirmP1(roomSession);
     }
   });
-  
+
 });
 
 var game = new Phaser.Game( CANVAS_WIDTH, CANVAS_HEIGHT, Phaser.AUTO, 'pac', { preload: preload, create: create, update: update } );
+
+
 
 function preload() {
   loadImages();
